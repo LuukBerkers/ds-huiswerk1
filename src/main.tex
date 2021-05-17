@@ -4,6 +4,7 @@
 % Packages
 \usepackage[utf8]{inputenc}
 \usepackage[dutch]{babel}
+\usepackage{enumerate}
 
 % Meta
 \title{DS Huiswerk 1}
@@ -15,12 +16,39 @@
     \maketitle
     
     \section{Pannekoeken}
-    
-    \section{Kvick Sört}
+
+    \section{Kvick S\"ort}
+    \begin{enumerate}[(a)]
+        \item Een gerandomiseerde pivotkeuze.
+        Dat is te zien aan de dobbelsteen.
+        \item Uitgaande van een gerandomiseerde versie van de implementatie van Cormen et al.:
+        \begin{verbatim}
+algorithm partition(A, lo, hi) is
+    pivot := A[random(lo, hi)]
+    i := lo
+    for j := lo to hi do
+        if A[j] < pivot then
+            swap A[i] with A[j]
+            i := i + 1
+    swap A[i] with A[hi]
+    return i
+        \end{verbatim}
+        Te zien is dat er een vergelijking plaatsvind voor elke iteratie van de for-loop.
+        Het aantal vergelijkingen is dus \(hi - lo + 1\).
+        Het algorithme wordt voor de eerste partitionering aangeroepen als
+        \verb|partition(A, 0, length(A) - 1)|, dus het aantal vergelijkingen is dan
+        \((n - 1) - 0 + 1 = n\).
+        \item Als je kunt garanderen dat de blokjes hun onderlinge volgorde behouden heb je een
+        stabiel sorteeralgoritme.
+        Wat Quicksort eigenlijk juist niet is.
+        \item Zolang je begrijpt wat pijlen aangeven en wat een dobbelsteen doet wel.
+        Het is nog steeds wel complexe materie die niet iedereen aan de hand van enkel illustraties
+        zal begrijpen.
+    \end{enumerate}
 
     \section{Optellen}
-    
+
     \section{De Grote Omega}
-    
+
     \section{Een zware klus}
 \end{document}
