@@ -5,6 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[dutch]{babel}
 \usepackage{enumerate}
+\usepackage{amsmath}
 
 % Meta
 \title{DS Huiswerk 1}
@@ -14,7 +15,7 @@
 % Document
 \begin{document}
     \maketitle
-    
+
     \section{Pannekoeken}
 
     \section{Kvick S\"ort}
@@ -51,4 +52,53 @@ algorithm partition(A, lo, hi) is
     \section{De Grote Omega}
 
     \section{Een zware klus}
+    \begin{enumerate}[(a)]
+        \item Om een array te sorteren moet hij op een bepaalde manier herordend worden.
+        Voor een array van lengte \(n\) zijn er \(n!\) manieren om hem te ordenen.
+        Dat betekent dat een sorteeralgoritme die elke willekeurige array kan sorteren dus altijd
+        minimaal \(n!\) verschillende uitvoeren moet kunnen hebben op basis van binaire
+        vergelijkingen.
+        Als \(W(n)\) het ergste geval is voor het minimum aantal vergelijkingen dat gedaan moet
+        worden om de array te sorteren geeft dat
+        \begin{gather*}
+            2^{W(n)} \ge n!\\
+            W(n) \ge \lg{n!}
+        \end{gather*}
+        De formule van Stirling geeft dat
+        \[
+            n! \approx \sqrt{2\pi n}\left( \frac{n}{e} \right)^n = n^n e^{-n} \sqrt{2\pi n}
+        \]
+        Met
+        \[
+            \lim_{n \to \infty} \frac{n!}{n^n e^{-n} \sqrt{2\pi n}} = 1
+        \]
+        Dat wil zeggen dat
+        \[
+            O(n!) = O\left(n^n e^{-n} \sqrt{2\pi n}\right) = O\left(n^n \sqrt{n}\right)
+            = O\left( n^n \right)
+        \]
+        Dus
+        \[
+            W(n) \ge \lg{n^n} = n \lg{n}
+        \]
+        Dat wil zeggen dat voor het sorteren van een array dus altijd een \(\Omega(n \lg{n})\)
+        algoritme nodig is simpelweg gebaseerd op het feit dat er uit \(n!\) verschillende herordeningen zijn
+        voor een array van lengte \(n\) waar uit gekozen moet worden op basis van binaire
+        vergelijkingen.
+
+        We weten dat quicksort \(O(n \lg n)\) dus een sorteeralgoritme kan in \(O(n \lg n)\).
+        Dus sorteren is \(\Theta(n \lg n)\).
+        \item \begin{verbatim}
+list<double> getTrucks(list<doouble> allTrucks, int n, double weight):
+    list<double> trucks = new list<double>;
+    while trucks.sum() < weight:
+        double largest = 0;
+        for i from 0 to n:
+            if allTrucks[largest] > allTrucks[i]:
+                largest = i;
+        trucks.add(allTrucks[largest]);
+        allTrucks.remove(largest);
+    return trucks;
+        \end{verbatim}
+    \end{enumerate}
 \end{document}
